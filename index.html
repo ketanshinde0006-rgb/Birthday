@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --bg-color: #fff0f3;
+            --primary-color: #ff4d6d;
+            --text-color: #590d22;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Floating Hearts Background */
+        .hearts-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -10vh;
+            color: var(--primary-color);
+            opacity: 0.6;
+            animation: floatUp 10s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; padding: 20px;
+        }
+
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem; color: var(--primary-color);
+            margin-bottom: 10px; animation: bounce 2s infinite;
+        }
+
+        .subtitle { font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; }
+
+        #start-btn {
+            padding: 15px 40px; font-size: 1.2rem;
+            background: var(--primary-color); color: white;
+            border: none; border-radius: 50px; cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        #start-btn:hover { transform: scale(1.1); }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Gallery Section */
+        .gallery-section { padding: 50px 20px; text-align: center; min-height: 100vh; }
+        
+        .grid-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px; max-width: 1000px; margin: 0 auto;
+        }
+
+        .card {
+            border-radius: 15px; overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover { transform: scale(1.05); }
+
+        .card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        /* Message Section */
+        .message-section {
+            min-height: 80vh; display: flex;
+            justify-content: center; align-items: center; padding: 20px;
+        }
+
+        .message-card {
+            background: white; padding: 40px;
+            border-radius: 20px; max-width: 600px; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary-color);
+            transform: translateY(50px); opacity: 0;
+            transition: all 1s ease-out;
+        }
+
+        .message-card.visible { transform: translateY(0); opacity: 1; }
+        
+        .message-card h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem; color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hearts-container"></div>
+
+    <header class="hero">
+        <h1 class="title">Happy Birthday, Baby!</h1>
+        <p class="subtitle">Today is all about celebrating you and the joy you bring to my life.</p>
+        <button id="start-btn">Start the Celebration ✨</button>
+    </header>
+
+    <section class="gallery-section" id="gallery">
+        <h2 style="font-family:'Dancing Script'; font-size:3rem; margin-bottom:40px; color:#ff4d6d;">Our Beautiful Memories</h2>
+        <div class="grid-container">
+            <div class="card"><img src="photo1.jpg" alt="Memory"></div>
+            <div class="card"><img src="https://source.unsplash.com/random/400x400/?date" alt="Memory"></div>
+            <div class="card"><img src="https://source.unsplash.com/random/400x400/?couple" alt="Memory"></div>
+            <div class="card"><img src="https://source.unsplash.com/random/400x400/?gift" alt="Memory"></div>
+            <div class="card"><img src="https://source.unsplash.com/random/400x400/?happy" alt="Memory"></div>
+            <div class="card"><img src="https://source.unsplash.com/random/400x400/?smile" alt="Memory"></div>
+        </div>
+    </section>
+
+    <section class="message-section">
+        <div class="message-card hidden">
+            <h2>A Special Message For You</h2>
+            <br>
+            <p>
+                Happy Birthday to the most beautiful soul. You make my world brighter just by being in it. 
+                Thank you for loving me, supporting me, and understanding me.
+                <br><br>
+                I wish you endless happiness today and forever!
+            </p>
+            <br>
+            <div style="font-weight:bold; color:#ff4d6d;">❤️ Forever Yours</div>
+        </div>
+    </section>
+
+    <script>
+        // --- JAVASCRIPT LOGIC ---
+        
+        // 1. Generate Floating Hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.querySelector('.hearts-container').appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+
+        // 2. Smooth Scroll on Click
+        document.getElementById('start-btn').addEventListener('click', () => {
+            document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // 3. Scroll Animation for Message Card
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        observer.observe(document.querySelector('.message-card'));
+    </script>
+</body>
+</html>
